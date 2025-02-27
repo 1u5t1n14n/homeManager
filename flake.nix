@@ -10,6 +10,10 @@
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		nixvim = {
+			url = "github:nix-community/nixvim";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = { nixpkgs, homeManager, ... }:
@@ -22,7 +26,10 @@
 					inherit userName;
 					inherit hasDesktop;
 				};
-				modules = [ ./Home.nix ];
+				modules = [
+					inputs.nixvim.homeManagerModules.nixvim
+					./Home.nix
+				];
 			};
 	in {
 		homeConfigurations = {
