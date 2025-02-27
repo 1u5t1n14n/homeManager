@@ -16,7 +16,7 @@
 		};
 	};
 
-	outputs = { nixpkgs, homeManager, ... }:
+	outputs = { nixpkgs, homeManager, nixvim, ... }:
 	let
 
 		mkHomeConfig = { userName, hasDesktop, system }:
@@ -27,7 +27,7 @@
 					inherit hasDesktop;
 				};
 				modules = [
-					inputs.nixvim.homeManagerModules.nixvim
+					nixvim.homeManagerModules.nixvim
 					./Home.nix
 				];
 			};
